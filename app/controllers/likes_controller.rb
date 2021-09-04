@@ -1,10 +1,12 @@
- def create
+class LikesController < ApplicationController 
+ before_action :set_sighting, only: [:show, :destroy]
+  def create
     @like = current_user.likes.new(sighting_id: params[:sighting_id])
 
     if @like.save
-      redirect_to posts_path, notice: 'You liked this post.'
+      render json: @sighting, status: :created, location: @sighting
     else
-      redirect_to posts_path, alert: 'You cannot like this post.'
+      render json: @like.errors, status: :unprocessable_entity
     end
   end
 
@@ -12,8 +14,14 @@
     like = Like.find_by(id: params[:id], user: current_user, sighting_id: params[:sighting_id])
     if like
       like.destroy
-      redirect_to posts_path, notice: 'You disliked a post.'
-    else
-      redirect_to posts_path, alert: 'You cannot dislike post that you did not like before.'
     end
+
   end
+    private
+
+      def set_sighting
+        @sighting = Sighting.find(params[:id])
+      end
+
+
+end
