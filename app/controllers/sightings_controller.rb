@@ -13,14 +13,16 @@ class SightingsController < ApplicationController
   end
 
   def create
-    @sighting = sighting.new(sighting_params)
-
+    @sighting = Sighting.new(sighting_params)
+    @sighting.user = current_user
     if @sighting.save
       render json: @sighting, status: :created, location: @sighting
     else
       render json: @sighting.errors, status: :unprocessable_entity
     end
   end
+
+  def edit; end
 
   def update
     if @sighting.update(sighting_params)
@@ -42,7 +44,7 @@ class SightingsController < ApplicationController
     end
 
     def require_same_user
-      return unless current_user != @article.user
+      return unless current_user != @sighting.user
     end
 
     def sighting_params
