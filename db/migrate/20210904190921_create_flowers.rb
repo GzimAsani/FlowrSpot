@@ -3,7 +3,7 @@ class CreateFlowers < ActiveRecord::Migration[6.1]
     create_table :flowers do |t|
       t.string :name
       t.string :description
-      
+
       t.timestamps
     end
   end
