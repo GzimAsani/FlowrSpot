@@ -12,17 +12,6 @@ class FlowersController < ApplicationController
     render json: @flower
   end
 
-  # POST /cities
-  def create
-    @flower = Flower.new(flower_params)
-
-    if @flower.save
-      render json: @flower, status: :created, location: @flower
-    else
-      render json: @flower.errors, status: :unprocessable_entity
-    end
-  end
-
   private
 
     def set_flower
