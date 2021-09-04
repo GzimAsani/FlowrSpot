@@ -9,7 +9,7 @@ class FlowersController < ApplicationController
   end
 
   def show
-    render json: @flower
+    render json: @flower.sightings.order(created_at: :desc)
   end
 
   private
