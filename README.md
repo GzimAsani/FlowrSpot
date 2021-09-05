@@ -22,7 +22,6 @@ This project is aworking version of a product called FlowrSpot. The app is used 
 This project was built using these technologies.
 * Ruby & Ruby on Rails
 * Rspec / Capybara
-* Bootstrap
 * SQLite
 * Bcrypt
 * PG
@@ -52,7 +51,7 @@ Rails: 6.0.3.4
 Install gems with:
 
 ```
-$ bundler install --without production
+$ bundler install
 ```
 
 Setup database with:
