@@ -4,12 +4,6 @@ class SightingsController < ApplicationController
 
   require 'rest-client'
 
-  def get_questions
-    url = "https://opentdb.com/api.php?amount=1"
-    response = RestClient.get(url)
-    render json: response
-  end
-
   def index
     @sightings = Sighting.all
     
@@ -56,6 +50,6 @@ class SightingsController < ApplicationController
     end
 
     def sighting_params
-      params.require(:sighting).permit(:longitude, :image, :latitude)
+      params.require(:sighting).permit(:longitude, :image, :latitude, :question)
     end
 end
