@@ -2,6 +2,14 @@ class SightingsController < ApplicationController
   before_action :require_same_user, only: %i[destroy edit update]
   before_action :set_sighting, only: [:show, :update, :destroy]
 
+  require 'rest-client'
+
+  def get_questions
+    url = "https://opentdb.com/api.php?amount=1"
+    response = RestClient.get(url)
+    render json: response
+  end
+
   def index
     @sightings = Sighting.all
     
